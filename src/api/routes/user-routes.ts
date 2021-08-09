@@ -72,8 +72,8 @@ router.put('/refer', async (req, res) => {
     savedUser.referralIds.push(targetUser.id);
     await savedUser.save();
 
-    if (savedUser.referralIds.length === 3)
-      await users.givePro(user.id, Plan.One);
+    if (savedUser.referralIds.length === 10)
+      await users.givePro(user.id, Plan.Forever);
     
     res.send(savedUser);
   } catch (error) { sendError(res, 400, error); }
@@ -94,9 +94,9 @@ async function validateReferral(tag: string, user: User | any, savedUser: UserDo
   if (!targetUser)
     throw new TypeError('Target user not found in any serverss.');
 
-  const owns3PGGuild = bot.guilds.cache.some(g => g.ownerID === targetUser.id);
-  if (!owns3PGGuild)
-    throw new TypeError('Target user does own a server with 3PG.');
+  const targetUser = bot.users.cache.find(u => u.tag === tag);
+  if (!targetUser)
+    throw new TypeError('Target user not found in any serverss.');
 
   if (targetUser.id === user.id)
     throw new TypeError('You cannot refer yourself!');
