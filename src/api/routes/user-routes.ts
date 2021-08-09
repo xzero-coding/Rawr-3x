@@ -89,14 +89,13 @@ async function validateReferral(tag: string, user: User | any, savedUser: UserDo
   const isValidUserTag = /^.+#\d{4}/.test(tag);
   if (!isValidUserTag)
     throw new TypeError('Target user tag is invalid.');
-
-  const targetUser = bot.users.cache.find(u => u.tag === tag);
+const targetUser = bot.users.cache.find(u => u.tag === tag);
   if (!targetUser)
-    throw new TypeError('Target user not found in any serverss.');
+    throw new TypeError('Target user not found in any servers.');
 
-  const targetUser = bot.users.cache.find(u => u.tag === tag);
-  if (!targetUser)
-    throw new TypeError('Target user not found in any serverss.');
+  const owns3PGGuild = bot.guilds.cache.some(g => g.ownerID === targetUser.id);
+  if (!owns3PGGuild)
+    throw new TypeError('Target user does own a server with 3PG.');
 
   if (targetUser.id === user.id)
     throw new TypeError('You cannot refer yourself!');
