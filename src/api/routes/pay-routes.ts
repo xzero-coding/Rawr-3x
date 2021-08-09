@@ -9,23 +9,23 @@ import bodyParser from 'body-parser';
 const items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
   {
   name: '3PG PRO [1 Month]',
-  description: 'Support 3PG, and unlock exclusive features!',
+  description: 'Support Cloud, and unlock exclusive features!',
   amount: 500,
-  currency: 'usd',
+  currency: 'euro',
   quantity: 1
   },
   {
   name: '3PG PRO [3 Months]',
-  description: 'Support 3PG, and unlock exclusive features!',
+  description: 'Support Cloud, and unlock exclusive features!',
   amount: 1000,
-  currency: 'usd',
+  currency: 'euro',
   quantity: 1
   },
   {
   name: '3PG PRO [Forever]',
-  description: 'Support 3PG, and unlock exclusive features!',
+  description: 'Support Cloud, and unlock exclusive features!',
   amount: 2500,
-  currency: 'usd',
+  currency: 'euro',
   quantity: 1
   }
 ];
